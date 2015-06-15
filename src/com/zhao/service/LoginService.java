@@ -5,5 +5,5 @@ import com.zhao.model.User;
 
 
 public interface LoginService {
-	public void login(User user);
+	public User login(User user);
 }

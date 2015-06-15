@@ -24,8 +24,7 @@ public class LoginAction implements Action{
 		User us = new User();
 		us.setUsername(username);
 		us.setPassword(password);
-		loginService.login(us);
-		System.out.println(username + "," + password);
+		System.out.println(loginService.login(us));
 		//
 		for(int i=0; i<10; i++){
 			User user = new User();
