@@ -2,6 +2,8 @@ package com.zhao.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,20 +14,22 @@ import com.zhao.dao.BaseDao;
 @Repository("baseDao")
 public class BaseDaoImpl<T> implements BaseDao<T>{
 	private SessionFactory sessionFactory;
-	private Session getCurrentSession(){
-		return sessionFactory.getCurrentSession();
-	}
+
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
+	}
 	@Override
 	public void save(T o) {
-		// TODO Auto-generated method stub
+		this.getCurrentSession().save(o);
 		
 	}
 
@@ -45,8 +49,11 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 			return null;
 		}
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> find(String hql, List<Object> param) {
+		System.out.println("find!");
+		//System.out.println(this.getCurrentSession());
 		System.out.println("find!");
 		Query q = this.getCurrentSession().createQuery(hql);
 		if (param != null && param.size() > 0) {

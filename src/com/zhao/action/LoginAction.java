@@ -21,10 +21,13 @@ public class LoginAction implements Action{
 	private LoginService loginService;
 	@Override
 	public String execute() throws Exception {
+		System.out.println("action start");
 		User us = new User();
 		us.setUsername(username);
 		us.setPassword(password);
+		System.out.println("middle");
 		System.out.println(loginService.login(us));
+		System.out.println("end");
 		//
 		for(int i=0; i<10; i++){
 			User user = new User();
